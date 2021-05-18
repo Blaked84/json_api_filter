@@ -202,7 +202,7 @@ RSpec.describe JsonApiFilter do
                                .where(posts: {id: [1,2]})
                 },
                 {
-                  name: 'named relationship ',
+                  name: 'named relationship',
                   params: {
                     filter: { articles: {id: "1,2"} }
                   },
@@ -228,6 +228,26 @@ RSpec.describe JsonApiFilter do
                   request: User.joins(:posts)
                                .where(posts: {id: [1,2]})
                                .where(name: "foo")
+                },
+                {
+                  name: 'relationship field',
+                  params: {
+                    filter: {
+                      posts: {user_id: "1,2"},
+                    }
+                  },
+                  request: User.joins(:posts)
+                               .where(posts: {user_id: [1,2]})
+                },
+                {
+                  name: 'named relationship field',
+                  params: {
+                    filter: {
+                      articles: {user_id: "1,2"},
+                    }
+                  },
+                  request: User.joins(:posts)
+                               .where(posts: {user_id: [1,2]})
                 },
               ],
       },
